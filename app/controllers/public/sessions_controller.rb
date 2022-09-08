@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Devise::SessionsController < Devise::SessionsController
+class Public::SessionsController < Devise::SessionsController
   before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -22,13 +22,13 @@ class Devise::SessionsController < Devise::SessionsController
 
   # If you have extra params to permit, append them to the sanitizer.
    def configure_sign_in_params
-     devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute, :email, :name])
+     public_parameter_sanitizer.permit(:sign_in, keys: [:attribute, :email, :name])
    end
 
    def guest_sign_in
     user = User.guest
     sign_in user
-    redirect_to public_books_path, notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to public_questions_path, notice: 'ゲストユーザーとしてログインしました。'
    end
 
 end

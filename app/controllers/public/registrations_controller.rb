@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Devise::RegistrationsController < Devise::RegistrationsController
+class Public::RegistrationsController < Devise::RegistrationsController
    before_action :configure_sign_up_params, only: [:create]
    before_action :configure_account_update_params, only: [:update]
    before_action :ensure_normal_user, only: %i[update destroy]#ゲストアカウント削除・変更対策
@@ -57,12 +57,12 @@ class Devise::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
    def configure_sign_up_params
-     devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :name])
+     Public_parameter_sanitizer.permit(:sign_up, keys: [:email, :name])
    end
 
   # If you have extra params to permit, append them to the sanitizer.
    def configure_account_update_params
-     devise_parameter_sanitizer.permit(:account_update, keys: [:email, :name])
+     public_parameter_sanitizer.permit(:account_update, keys: [:email, :name])
    end
 
    def user_edit_params
