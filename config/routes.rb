@@ -10,7 +10,8 @@ Rails.application.routes.draw do
     devise_scope :user do
       post 'users/guest_sign_in', to: '/public/sessions#guest_sign_in'
     end
-    resources :questions,only:[:index, :show]
+    resources :questions,only:[:index, :show, :new, :create]
+    resources :homes,only:[:index, :show]
   end
 
 end

@@ -1,5 +1,12 @@
 class Public::QuestionsController < ApplicationController
-  
-  def top
+
+  def index
+  end
+
+  def new
+    @question = Question.new
+  end
+
+  def create
   end
 end
