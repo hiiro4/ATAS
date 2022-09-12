@@ -1,4 +1,5 @@
 class Public::HomesController < ApplicationController
-  def top
+  def index
+    @subject = Subject.all
   end
 end

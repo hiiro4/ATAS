@@ -3,12 +3,10 @@
   <div class="question-submit">
     <%= form_with model:@question,url:public_questions_path, method: :post do |question| %>
     <%= question.text_field :title, placeholder: "質問タイトルを入力" %>
-    <%= question.select "subject", options_for_select({"数学" => "math", "英語" => "english",
-                    "物理" => "Physics", "化学" => "chemistry", "生物" => "biology", "地理" => "geography",
-                    "世界史"=> "World-history", "日本史" => "Japanese-history", "公民" => "public-hall",
-                    "現代文" => "Modern-Japanese","古文" => "Classics", "漢文" => "Chinese classics"}) %> 
     <%= question.text_area :body, placeholder: "質問内容を入力" %>
     <% question.hidden_field :user_id, :value => current_user.id %>
+    <%= question.select :subject_name, options_from_collection_for_select(Subject.all, :subject_name, :subject_name) %>
     <%= question.submit "質問する" %>
+    <% end %>
   </div>
 </div>

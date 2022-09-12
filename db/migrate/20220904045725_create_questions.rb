@@ -4,6 +4,7 @@ class CreateQuestions < ActiveRecord::Migration[6.1]
       
       t.integer :user_id
       t.integer :subject_id
+      t.string  :subject_name
       t.string  :child_subject
       t.string  :title
       t.text    :body

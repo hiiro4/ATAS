@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2022_09_12_002206) do
   end
 
   create_table "child_subjects", force: :cascade do |t|
-    t.string "child_subject"
+    t.string "child_subject_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2022_09_12_002206) do
   create_table "questions", force: :cascade do |t|
     t.integer "user_id"
     t.integer "subject_id"
+    t.string "subject_name"
     t.string "child_subject"
     t.string "title"
     t.text "body"
@@ -57,7 +58,7 @@ ActiveRecord::Schema.define(version: 2022_09_12_002206) do
   end
 
   create_table "subjects", force: :cascade do |t|
-    t.string "subject"
+    t.string "subject_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

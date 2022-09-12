@@ -1,6 +1,6 @@
 <div class="container">
   <%= form_with model:@subject,url:public_subjects_path, method: :post do |subject| %>
-  <div class="subject-name"><%= subject.text_field :subject, placeholder: "教科名を入力してください"%></div>
+  <div class="subject-name"><%= subject.text_field :subject_name, placeholder: "教科名を入力してください"%></div>
   <div><%= subject.submit "投稿"%></div>
   <% end %>
 </div>

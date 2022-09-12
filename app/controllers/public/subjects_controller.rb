@@ -15,7 +15,7 @@ class Public::SubjectsController < ApplicationController
 
   private
   def subject_params
-     params.require(:subject).permit(:subject)
+     params.require(:subject).permit(:subject_name)
   end
 
 end

@@ -2,4 +2,7 @@
   <li class="top-subject-contents">サンプル1</li>
   <li class="top-subject-contents">サンプル2</li>
   <li class="top-subject-contents">サンプル3</li>
+  <% @subject.each do |subject| %>
+  <li><%= subject.subject_name %></li>
+  <% end %>
 </ul>
