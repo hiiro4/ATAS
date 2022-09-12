@@ -3,10 +3,10 @@ class CreateQuestions < ActiveRecord::Migration[6.1]
     create_table :questions do |t|
       
       t.integer :user_id
+      t.integer :subject_id
+      t.string  :child_subject
       t.string  :title
       t.text    :body
-      t.string  :subject
-      t.string  :child_subject
       
       t.timestamps
     end

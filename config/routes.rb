@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     end
     resources :questions,only:[:index, :show, :new, :create]
     resources :homes,only:[:index, :show]
+    resources :subjects,only:[:new, :create, :edit, :update]
+    resources :child_subjects,only:[:new, :create, :edit, :update]
+
   end
 
 end

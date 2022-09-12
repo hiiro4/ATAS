@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_06_110512) do
+ActiveRecord::Schema.define(version: 2022_09_12_002206) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,12 +40,24 @@ ActiveRecord::Schema.define(version: 2022_09_06_110512) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "child_subjects", force: :cascade do |t|
+    t.string "child_subject"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "questions", force: :cascade do |t|
     t.integer "user_id"
+    t.integer "subject_id"
+    t.string "child_subject"
     t.string "title"
     t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "subjects", force: :cascade do |t|
     t.string "subject"
-    t.string "child_subject"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

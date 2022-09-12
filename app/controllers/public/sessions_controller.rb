@@ -22,7 +22,7 @@ class Public::SessionsController < Devise::SessionsController
 
   # If you have extra params to permit, append them to the sanitizer.
    def configure_sign_in_params
-     public_parameter_sanitizer.permit(:sign_in, keys: [:attribute, :email, :name])
+     devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :name])
    end
 
    def guest_sign_in

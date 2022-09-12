@@ -1,0 +1,2 @@
+module Public::ChildSubjectHelper
+end

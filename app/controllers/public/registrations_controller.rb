@@ -38,7 +38,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # def cancel
   #   super
   # end
-=begin  
+=begin
   def edit
     @user = current_user
   end
@@ -57,12 +57,12 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
    def configure_sign_up_params
-     Public_parameter_sanitizer.permit(:sign_up, keys: [:email, :name])
+     devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :name])
    end
 
   # If you have extra params to permit, append them to the sanitizer.
    def configure_account_update_params
-     public_parameter_sanitizer.permit(:account_update, keys: [:email, :name])
+     devise_parameter_sanitizer.permit(:account_update, keys: [:email, :name])
    end
 
    def user_edit_params

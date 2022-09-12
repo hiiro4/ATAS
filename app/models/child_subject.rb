@@ -1,0 +1,2 @@
+class ChildSubject < ApplicationRecord
+end
