@@ -4,8 +4,8 @@
     <%= form_with model:@question,url:public_questions_path, method: :post do |question| %>
     <%= question.text_field :title, placeholder: "質問タイトルを入力" %>
     <%= question.text_area :body, placeholder: "質問内容を入力" %>
-    <% question.hidden_field :user_id, :value => current_user.id %>
-    <%= question.select :subject_name, options_from_collection_for_select(Subject.all, :subject_name, :subject_name) %>
+    <%= question.select :subject_id, options_from_collection_for_select(Subject.all, :id, :subject_name) %><!--科目名はコントローラで入力、暫定処置のため方法判明次第改修-->
+    <%= question.hidden_field :user_id, :value => current_user.id %>
     <%= question.submit "質問する" %>
     <% end %>
   </div>
