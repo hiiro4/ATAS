@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div><%= @each_subject.subject_name%>の質問</div>
+  </div>
+  <div class="row">
+    <div class="col-2">科目一覧
+      <%= render "public/subjects/subject"%>
+    </div>
+    <div class="col-8">
+      <%= render "public/questions/question"%>
+    </div>
+  </div>
+</div>

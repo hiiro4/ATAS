@@ -3,10 +3,10 @@ class Public::QuestionsController < ApplicationController
   def index
   end
 
-  def show #科目ごとの表示ページ
-    @each_subject = Subject.find_by(id:params[:id])
-    @question = Question.where(subject_id:params[:id])
-    @subject = Subject.all
+  def show
+    @question = Question.find(params[:id])
+    @answer = Answer.where(question_id:params[:id])
+    @answering = Answer.new
   end
 
   def new
@@ -17,7 +17,7 @@ class Public::QuestionsController < ApplicationController
     @question = Question.new(question_params)
     subject_name_local = Subject.find_by(id:@question.subject_id)
     @question.subject_name = subject_name_local.subject_name#暫定措置、viewページでの入力方法判明次第対処-->
-    if @question.save
+    if @question.save!
       redirect_to public_homes_path
     else
       render new_public_question_path

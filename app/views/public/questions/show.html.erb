@@ -1,13 +1,42 @@
-<div class="container">
-  <div class="row">
-    <div><%= @each_subject.subject_name%>の質問</div>
+<div class="container col-8">
+
+  <div class="row question-top"><!--質問タイトル-->
+    <div class="question-title"><%= @question.title %></div>
+    <div class="question-time"><%= @question.created_at %></div>
+    <% if current_user.role == 2 %>
+    <div><%= link_to "削除", public_question_path(@question), method: :delete %></div>
+    <% end %>
   </div>
-  <div class="row">
-    <div class="col-2">科目一覧
-      <%= render "public/subjects/subject"%>
-    </div>
-    <div class="col-8">
-      <%= render "public/questions/question"%>
-    </div>
+
+  <div class="row question-user"><!--質問情報 -->
+    <div class="question-user-icon">アイコン</div>
+    <div class="question-user-name pl-5"><%= User.find_by(id:@question.user_id).name %></div>
+    <div class="question-subject pl-5">:<%= @question.subject_name %></div>
   </div>
+
+  <div class="question-body"><%= @question.body %></div></br><!--質問内容-->
+  <% @answer.each do |answer| %>
+  <div class="question-answer"><!--解答-->
+    <div class="row">
+      <div class="answer-user-icon">解答者アイコン</div>
+      <div class="answer-user-name"><%= User.find_by(id:answer.user_id).name %></div>
+      <div class="answer-time"><%= answer.created_at %></div>
+    </div>
+    <div class="answer-body"><%= answer.answer %></div>
+  </div>
+  <% end %>
+
+  <%= form_with model:@answering,url:public_question_answers_path(@question), method: :post do |answering| %><!--解答入力-->
+    <div class="question-answering">
+      <div class="row">
+        <div class="answering-user-icon">入力者アイコン</div>
+        <div class="answering-user-name">入力者名</div>
+      </div>
+      <div>
+        <%= answering.text_area :answer, placeholder: "返答内容を入力", class: "answering-body" %>
+        <%= answering.submit "答える" %>
+      </div>
+    </div>
+  <% end %>
+
 </div>

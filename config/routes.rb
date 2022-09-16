@@ -10,7 +10,9 @@ Rails.application.routes.draw do
     devise_scope :user do
       post 'users/guest_sign_in', to: '/public/sessions#guest_sign_in'
     end
-    resources :questions,only:[:index, :show, :new, :create, :destroy]
+    resources :questions,only:[:index, :show, :new, :create, :destroy]do
+      resources :answers,only:[:create]
+    end
     resources :homes,only:[:index, :show]
     resources :subjects,only:[:new, :create, :edit, :update]
     resources :child_subjects,only:[:new, :create, :edit, :update]
