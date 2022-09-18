@@ -38,21 +38,21 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # def cancel
   #   super
   # end
-=begin
+
   def edit
     @user = current_user
   end
 
   def update
     @user = current_user
-    if(user_edit_params[:name]).present?&&(user_edit_params[:email]).present?
+    if(user_edit_params[:name]).present?&&(user_edit_params[:email]).present?&&(user_edit_params[:introduction]).present?
     @user.update(user_edit_params)
     redirect_to public_user_path(current_user)
     else
       redirect_to  edit_user_registration_path(current_user)
     end
   end
-=end
+
   protected
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -66,7 +66,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
    end
 
    def user_edit_params
-      params.require(:user).permit(:name, :email)
+      params.require(:user).permit(:name, :email, :introduction, :image)
    end
 
   # The path used after sign up.
@@ -80,7 +80,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # end
   #ゲストユーザーをcheckで判別
   def ensure_normal_user
-    if resource.check != 1
+    if resource.role != 1
       redirect_to public_user_path(current_user), notice: '更新・削除はできません。'
     end
   end

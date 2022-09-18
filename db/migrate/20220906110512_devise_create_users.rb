@@ -6,7 +6,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       ## Database authenticatable
       t.string  :email,              null: false, default: ""
       t.string  :name,               null: false, default: ""
-      t.integer :role,              null: false, default: 1
+      t.integer :role,               null: false, default: 1
+      t.string  :introduction,                    default: "よろしく"
       t.string  :encrypted_password, null: false, default: ""
 
       ## Recoverable

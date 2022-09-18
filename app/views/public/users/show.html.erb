@@ -1,0 +1,7 @@
+<div class="container col-3 text-center">
+  <strong>User info</strong>
+  <div>サンプル画像</div>
+  <div class="user-info">ユーザー名:<%= @user.name %></div>
+  <div class="user-intro">紹介:<%= @user.introduction %></div>
+  <div><%= link_to "編集する",edit_user_registration_path(current_user) %></div>
+</div>

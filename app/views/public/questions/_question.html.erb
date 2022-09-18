@@ -35,7 +35,11 @@
     </div>
 
     <div class="row question-user">
-      <div class="question-user-icon">アイコン</div>
+      <% if User.find_by(id:question.user_id).image.attached? %>
+        <div class="question-user-icon"><%= image_tag User.find_by(id:question.user_id).image, size: "20x20" %></div>
+      <% else %>
+        <%= image_tag 'no_image', size: "50x50" %>
+      <% end %>
       <div class="question-user-name pl-5"><%= User.find_by(id:question.user_id).name %></div>
       <div class="question-subject pl-5">:<%= question.subject_name %></div>
     </div>
