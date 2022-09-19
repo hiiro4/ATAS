@@ -1,66 +1,37 @@
 <div class="container question">
-  <!--表示デモ-->
   <div class="row question-top">
-    <div class="question-title">タイトル</div>
-    <div class="question-time">投稿日時</div>
+    <div class="question-title"><%= question.title %></div>
+    <div class="question-time"><%= question.created_at %></div>
+    <% if current_user.role == 2 %>
+      <div><%= link_to "削除", public_question_path(question), method: :delete %></div>
+    <% end %>
   </div>
 
   <div class="row question-user">
-    <div class="question-user-icon">アイコン</div>
-    <div class="question-user-name pl-5">ユーザー名</div>
-    <div class="question-subject pl-5">:科目</div>
+    <% if User.find_by(id:question.user_id).image.attached? %>
+      <div class="question-user-icon"><%= image_tag User.find_by(id:question.user_id).image, size: "20x20" %></div>
+    <% else %>
+      <%= image_tag 'no_image', size: "50x50" %>
+    <% end %>
+    <div class="question-user-name pl-5"><%= User.find_by(id:question.user_id).name %></div>
+    <div class="question-subject pl-5">:<%= question.subject_name %></div>
   </div>
 
   <details><summary>内容を見る</summary>
     <div style="height: 80%;overflow-wrap: break-word;overflow-y: scroll;text-align:left" >
-      <div class="question-body">testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest</div></br>
-      <div class="question-answer">
-        <div class="row">
-          <div class="answer-user-icon">解答者アイコン</div>
-          <div class="answer-user-name">回答者名</div>
-          <div class="answer-time">解答日時</div>
+      <div class="question-body"><%= question.body %></div></br>
+
+      <% @answer.where(question_id:question.id).each do |answer| %>
+        <div class="question-answer"><!--解答-->
+          <div class="row">
+            <div class="answer-user-icon">解答者アイコン</div>
+            <div class="answer-user-name"><%= User.find_by(id:answer.user_id).name %></div>
+            <div class="answer-time"><%= answer.created_at %></div>
+          </div>
+          <div class="answer-body"><%= answer.answer %></div>
         </div>
-        <div class="answer-body">testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest</div>
-      </div>
+      <% end %>
+      <div><%= link_to "詳細を見る",public_question_path(question) %></div>
     </div>
   </details>
-  <!-- ここまでデモ -->
-  <% @question.each do |question| %>
-    <div class="row question-top">
-      <div class="question-title"><%= question.title %></div>
-      <div class="question-time"><%= question.created_at %></div>
-      <% if current_user.role == 2 %>
-        <div><%= link_to "削除", public_question_path(question), method: :delete %></div>
-      <% end %>
-    </div>
-
-    <div class="row question-user">
-      <% if User.find_by(id:question.user_id).image.attached? %>
-        <div class="question-user-icon"><%= image_tag User.find_by(id:question.user_id).image, size: "20x20" %></div>
-      <% else %>
-        <%= image_tag 'no_image', size: "50x50" %>
-      <% end %>
-      <div class="question-user-name pl-5"><%= User.find_by(id:question.user_id).name %></div>
-      <div class="question-subject pl-5">:<%= question.subject_name %></div>
-    </div>
-
-    <details><summary>内容を見る</summary>
-      <div style="height: 80%;overflow-wrap: break-word;overflow-y: scroll;text-align:left" >
-        <div class="question-body"><%= question.body %></div></br>
-
-        <% @answer.where(question_id:question.id).each do |answer| %>
-          <div class="question-answer"><!--解答-->
-            <div class="row">
-              <div class="answer-user-icon">解答者アイコン</div>
-              <div class="answer-user-name"><%= User.find_by(id:answer.user_id).name %></div>
-              <div class="answer-time"><%= answer.created_at %></div>
-            </div>
-            <div class="answer-body"><%= answer.answer %></div>
-          </div>
-        <% end %>
-        <div><%= link_to "詳細を見る",public_question_path(question) %></div>
-      </div>
-    </details>
-  <% end %>
-
 </div>

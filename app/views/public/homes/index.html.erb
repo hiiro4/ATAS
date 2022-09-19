@@ -7,7 +7,9 @@
       <%= render "public/subjects/subject" %>
     </div>
     <div class="col-8">
-      <%= render "public/questions/question" %>
+      <% @question.each do |question| %>
+        <%= render "public/questions/question", question: question %>
+      <% end %>
     </div>
   </div>
 </div>
