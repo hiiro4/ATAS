@@ -9,5 +9,6 @@ class Public::HomesController < ApplicationController
     @each_subject = Subject.find_by(id:params[:id])
     @question = Question.where(subject_id:params[:id])
     @subject = Subject.all
+    @answer = Answer.where(question_id:params[:id])
   end
 end

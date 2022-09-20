@@ -1,7 +1,24 @@
-<div class="container col-3 text-center">
-  <strong>User info</strong>
-  <div>サンプル画像</div>
-  <div class="user-info">ユーザー名:<%= @user.name %></div>
-  <div class="user-intro">紹介:<%= @user.introduction %></div>
-  <div><%= link_to "編集する",edit_user_registration_path(current_user) %></div>
+<div class="container">
+  <div class="row">
+    <div class="col-3 text-center">
+      <h4><strong>User info</strong></h4>
+      <% if @user.image.attached? %>
+        <div class="question-user-icon"><%= image_tag @user.image, size: "200x200" %></div>
+      <% else %>
+        <%= image_tag 'no_image', size: "200x200" %>
+      <% end %>
+      <div class="user-info p-3">ユーザー名:<%= @user.name %></div>
+      <div class="user-intro p-3">紹介:<%= @user.introduction %></div>
+
+      <% if @user == current_user %>
+        <div class="row"><%= link_to edit_user_registration_path(current_user), class: "btn-outline-secondary btn-block btn" do %>
+          <i class="fas fa-user-cog"></i><% end %>
+        </div>
+      <% end %>
+
+    </div>
+    <div class="col-8">
+      <%= render "public/questions/question"%>
+    </div>
+  </div>
 </div>

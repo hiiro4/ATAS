@@ -1,7 +1,8 @@
 <div class="container question">
+  <% @question.each do |question| %>
   <div class="row question-top">
     <div class="question-title"><%= question.title %></div>
-    <div class="question-time"><%= question.created_at %></div>
+    <div class="question-time"><%= l question.created_at %></div>
     <% if current_user.role == 2 %>
       <div><%= link_to "削除", public_question_path(question), method: :delete %></div>
     <% end %>
@@ -9,11 +10,11 @@
 
   <div class="row question-user">
     <% if User.find_by(id:question.user_id).image.attached? %>
-      <div class="question-user-icon"><%= image_tag User.find_by(id:question.user_id).image, size: "20x20" %></div>
+      <div class="question-user-icon"><%= image_tag User.find_by(id:question.user_id).image, size: "50x50" %></div>
     <% else %>
       <%= image_tag 'no_image', size: "50x50" %>
     <% end %>
-    <div class="question-user-name pl-5"><%= User.find_by(id:question.user_id).name %></div>
+    <div class="question-user-name pl-5"><%= link_to User.find_by(id:question.user_id).name, public_user_path(question.user_id) %></div>
     <div class="question-subject pl-5">:<%= question.subject_name %></div>
   </div>
 
@@ -24,14 +25,21 @@
       <% @answer.where(question_id:question.id).each do |answer| %>
         <div class="question-answer"><!--解答-->
           <div class="row">
-            <div class="answer-user-icon">解答者アイコン</div>
-            <div class="answer-user-name"><%= User.find_by(id:answer.user_id).name %></div>
-            <div class="answer-time"><%= answer.created_at %></div>
+            <% if User.find_by(id:answer.user_id).image.attached? %>
+              <div class="question-user-icon"><%= image_tag User.find_by(id:answer.user_id).image, size: "50x50" %></div>
+            <% else %>
+              <%= image_tag 'no_image', size: "50x50" %>
+            <% end %>
+            <div class="answer-user-name pl-3"><%= link_to User.find_by(id:answer.user_id).name, public_user_path(answer.user_id) %></div>
+            <div class="answer-time pl-3"><%= l answer.created_at %></div>
           </div>
-          <div class="answer-body"><%= answer.answer %></div>
+          <div  style="height: 80%;overflow-wrap: break-word;overflow-y: scroll;text-align:left">
+            <div class="answer-body"><%= answer.answer %></div>
+          </div>
         </div>
       <% end %>
       <div><%= link_to "詳細を見る",public_question_path(question) %></div>
     </div>
   </details>
+  <% end %>
 </div>
