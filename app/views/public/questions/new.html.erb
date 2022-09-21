@@ -1,11 +1,34 @@
-<div class="container">
+<div class="container text-center">
   <h3>新規質問投稿</h3>
   <div class="question-submit">
+    <div style ="display:flex;"></div>
     <%= form_with model:@question,url:public_questions_path, method: :post do |question| %>
-    <%= question.text_field :title, placeholder: "質問タイトルを入力" %>
-    <%= question.text_area :body, placeholder: "質問内容を入力" %>
-    <%= question.select :subject_id, options_from_collection_for_select(Subject.all, :id, :subject_name) %><!--科目名はコントローラで入力、暫定処置のため方法判明次第改修-->
-    <%= question.hidden_field :user_id, :value => current_user.id %>
+    <div class="p-2"><%= question.text_field :title, placeholder: "質問タイトルを入力(最大50字)", class: 'form-control',size: "5x1" %></div>
+    <div class="p-2"><%= question.text_area :body, placeholder: "質問内容を入力", class: 'form-control',size: "20x10" %></div>
+    <div>＊科目、小カテゴリを選択してください</div>
+    <div class="p-2">
+      <%= question.select :subject_id, options_from_collection_for_select(Subject.all, :id, :subject_name), selected: 1 %><!--科目名はコントローラで入力、暫定処置のため方法判明次第改修-->
+      <%= question.hidden_field :user_id, :value => current_user.id %>
+    </div>
+
+    <div id="child_subject_insert_point"><!-- 初期表示部分-->
+      <div id="child_subject_category" class="active">
+        <div class="field ">
+            <%= question.select :child_subject_id, options_from_collection_for_select(ChildSubject.where(subject_id:1), :id, :child_subject_name) %><!--科目名はコントローラで入力、暫定処置のため方法判明次第改修-->
+        </div>
+      </div>
+
+      <% Subject.all.each do |subject|  %>
+      <template id="child_subject_category_<%= subject.id %>"><!-- subjectで切り替え-->
+        <div id="child_subject_category">
+          <div class="field" >
+          <%= question.select :child_subject_id, options_from_collection_for_select(ChildSubject.where(subject_id:subject.id), :id, :child_subject_name) %>
+          </div>
+        </div>
+      </template>
+      <% end %>
+    </div>
+
     <%= question.submit "質問する" %>
     <% end %>
   </div>

@@ -59,7 +59,8 @@ ActiveRecord::Schema.define(version: 2022_09_16_043239) do
     t.integer "user_id"
     t.integer "subject_id"
     t.string "subject_name"
-    t.string "child_subject"
+    t.integer "child_subject_id"
+    t.string "child_subject_name"
     t.string "title"
     t.text "body"
     t.datetime "created_at", precision: 6, null: false

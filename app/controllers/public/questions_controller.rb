@@ -16,7 +16,9 @@ class Public::QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     subject_name_local = Subject.find_by(id:@question.subject_id)
+    child_subject_name_local = ChildSubject.find_by(id:@question.child_subject_id)
     @question.subject_name = subject_name_local.subject_name#暫定措置、viewページでの入力方法判明次第対処-->
+    @question.child_subject_name = child_subject_name_local.child_subject_name#暫定措置、viewページでの入力方法判明次第対処-->
     if @question.save!
       redirect_to public_homes_path
     else
@@ -32,7 +34,7 @@ class Public::QuestionsController < ApplicationController
 
   private
   def question_params
-     params.require(:question).permit(:title, :body, :user_id, :subject_id, :subject_name)
+     params.require(:question).permit(:title, :body, :user_id, :subject_id, :subject_name, :child_subject_id, :child_subject_name)
   end
 
 end
