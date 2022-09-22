@@ -34,7 +34,7 @@ class Public::QuestionsController < ApplicationController
 
   private
   def question_params
-     params.require(:question).permit(:title, :body, :user_id, :subject_id, :subject_name, :child_subject_id, :child_subject_name)
+     params.require(:question).permit(:title, :body, :user_id, :subject_id, :subject_name, :child_subject_id, :child_subject_name, images: [])
   end
 
 end

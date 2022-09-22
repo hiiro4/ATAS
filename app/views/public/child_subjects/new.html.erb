@@ -1,0 +1,8 @@
+<div class="container">
+  <%= form_with model:@child_subject,url:public_child_subjects_path, method: :post do |child_subject| %>
+  <div><%= @subject.subject_name %></div>
+  <div class="subject-name"><%= child_subject.text_field :child_subject_name, placeholder: "科目名を入力してください"%></div>
+  <%= child_subject.hidden_field :subject_id, :value => params[:id] %>
+  <div><%= child_subject.submit "投稿"%></div>
+  <% end %>
+</div>

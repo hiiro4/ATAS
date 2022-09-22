@@ -18,7 +18,7 @@ User.create!(
 
 Subject.create!(
   [
-    { 
+    {
       id:1,
       subject_name: "英語",
     },
@@ -39,7 +39,7 @@ Subject.create!(
       subject_name: "社会"
     }
     ])
-    
+
  ChildSubject.create!(
    [
      {

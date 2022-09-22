@@ -1,0 +1,22 @@
+<div class="container">
+  <table>
+    <tbody >
+      <% @subject.each do |subject| %>
+        <tr class="border-bottom">
+          <th class="p-2 border"><%= subject.subject_name %></th>
+          <% ChildSubject.where(subject_id:subject.id).each do |child_subject| %>
+            <td><%= child_subject.child_subject_name %></td>
+          <% end %>
+          <td><%= link_to "科目追加", public_path(subject) %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <th><%= link_to "教科新規作成", new_public_subject_path %></th>
+      </tr>
+    </tbody>
+  </table>
+  <h4>＊教科、科目名は各質問ごとに保存されています。教科、科目名を変更しても既存の質問には一切反映されません。<br>
+      ただし、新規の質問には変更結果が反映されます。<br>
+      その結果、質問により教科、科目名に齟齬が生じる恐れがあります。<br>
+      基本的に、教科、科目名の変更があった際は新規作成をしてください</h4>
+</div>

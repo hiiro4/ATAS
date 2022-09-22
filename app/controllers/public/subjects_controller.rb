@@ -1,5 +1,9 @@
 class Public::SubjectsController < ApplicationController
 
+  def index
+    @subject = Subject.all
+  end
+
   def new
     @subject = Subject.new
   end
@@ -7,9 +11,9 @@ class Public::SubjectsController < ApplicationController
   def create
     @subject = Subject.new(subject_params)
     if @subject.save
-      redirect_to root_path
+      redirect_to public_subjects_path
     else
-      redirect_to root_path
+      redirect_to new_public_subject_path
     end
   end
 

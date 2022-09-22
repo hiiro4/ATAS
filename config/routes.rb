@@ -14,8 +14,9 @@ Rails.application.routes.draw do
       resources :answers,only:[:create]
     end
     resources :homes,only:[:index, :show]
-    resources :subjects,only:[:new, :create, :edit, :update]
-    resources :child_subjects,only:[:new, :create, :edit, :update]
+    resources :subjects,only:[:index, :new, :create, :edit, :update]
+    resources :child_subjects,only:[:create, :edit, :update, :index]
+      get "child_subjects/new/:id", to: "child_subjects#new"
 
   end
 

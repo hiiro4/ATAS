@@ -23,7 +23,20 @@
 
   <details><summary>内容を見る</summary>
     <div style="height: 300px;overflow-wrap: break-word;overflow-y: scroll;text-align:left" >
-      <div class="question-body"><%= question.body %></div></br>
+      <div class="question-body"><%= question.body %></br>
+
+        <div><!--画像表示部分 -->
+          <% if question.images.attached? %>
+            <div class="row">クリックで拡大
+              <% question.images.each do |image| %>
+                <%= link_to image, "data-lightbox": image do %>
+                  <div class="question-user-icon"><%= image_tag image,size: "50x50", class: "img" %></div>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
 
       <% @answer.where(question_id:question.id).each do |answer| %>
         <div class="question-answer"><!--解答-->
