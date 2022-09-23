@@ -7,23 +7,62 @@
   </div>
 
   <div class="row question-user"><!--質問情報 -->
-    <div class="question-user-icon">アイコン</div>
+
+    <% if User.find_by(id:@question.user_id).image.attached? %>
+      <div class="question-user-icon"><%= image_tag User.find_by(id:@question.user_id).image, size: "50x50" %></div>
+    <% else %>
+      <%= image_tag 'no_image', size: "50x50" %>
+    <% end %>
+
     <div class="question-user-name pl-5"><%= User.find_by(id:@question.user_id).name %></div>
     <div class="question-subject pl-5">:<%= @question.subject_name %></div>
   </div>
   <div style="height: 80%;overflow-wrap: break-word;overflow-y: scroll;text-align:left">
-    <div class="question-body"><%= @question.body %></div></br><!--質問内容-->
+    <div class="question-body"><%= @question.body %></br><!--質問内容-->
+      <div><!--画像表示部分 -->
+        <% if @question.images.attached? %>
+          <div class="row">
+            <% @question.images.each do |image| %>
+              <%= link_to image, "data-lightbox": image do %>
+                <div class="question-user-icon"><%= image_tag image,size: "50x50", class: "img" %></div>
+              <% end %>
+            <% end %>
+          　<div>クリックで拡大</div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 
   <% @answer.each do |answer| %>
   <div class="question-answer"><!--解答-->
     <div class="row">
-      <div class="answer-user-icon">解答者アイコン</div>
+
+      <!--回答者アイコン-->
+      <% if User.find_by(id:answer.user_id).image.attached? %>
+        <div class="question-user-icon"><%= image_tag User.find_by(id:answer.user_id).image, size: "50x50" %></div>
+      <% else %>
+        <%= image_tag 'no_image', size: "50x50" %>
+      <% end %>
+
       <div class="answer-user-name"><%= User.find_by(id:answer.user_id).name %></div>
       <div class="answer-time"><%= l answer.created_at, format: :long %></div>
     </div>
     <div  style="height: 80%;overflow-wrap: break-word;overflow-y: scroll;text-align:left">
-      <div class="answer-body"><%= answer.answer %></div>
+      <div class="answer-body"><%= answer.answer %>
+        <div><!--画像表示部分 -->
+          <% if answer.images.attached? %>
+            <div class="row">
+              <% answer.images.each do |image| %>
+                <%= link_to image, "data-lightbox": image do %>
+                  <div class="question-user-icon"><%= image_tag image,size: "50x50", class: "img" %></div>
+                <% end %>
+              <% end %>
+              <div>クリックで拡大</div>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
   <% end %>
