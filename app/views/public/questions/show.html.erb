@@ -16,7 +16,7 @@
       <div>
         <%= answering.text_area :answer, placeholder: "返答内容を入力", class: "answering-body" %>
         <div><!--画像投稿-->
-          <%= answering.file_field :images, name: 'answer[images][]', multiple: true, accept: "image/*" %>
+          <%= answering.file_field :images, name: 'answer[images][]', multiple: true, accept: "image/*" %>画像は複数枚投稿できます
         </div>
         <%= answering.submit "答える" %>
       </div>

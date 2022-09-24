@@ -52,13 +52,28 @@
             <div class="answer-user-name pl-3"><%= link_to User.find_by(id:answer.user_id).name, public_user_path(answer.user_id) %></div>
             <div class="answer-time pl-3"><%= l answer.created_at, format: :long %></div>
           </div>
-          <div  style="height: 80%;overflow-wrap: break-word;overflow-y: scroll;text-align:left">
-            <div class="answer-body"><%= answer.answer %></div>
+
+          <div>
+            <div class="answer-body"><%= answer.answer %>
+              <div><!--画像表示部分 -->
+                <% if answer.images.attached? %>
+                  <div class="row">
+                    <% answer.images.each do |image| %>
+                      <%= link_to image, "data-lightbox": image do %>
+                        <div class="question-user-icon"><%= image_tag image,size: "50x50", class: "img" %></div>
+                      <% end %>
+                    <% end %>
+                    <div>クリックで拡大</div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
           </div>
+
         </div>
       <% end %>
     </div>
+    <div><%= link_to "詳細を見る",public_question_path(question) %></div>
   </details>
-  <div><%= link_to "詳細を見る",public_question_path(question) %></div>
   <% end %>
 </div>

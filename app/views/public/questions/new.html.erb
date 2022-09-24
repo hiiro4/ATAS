@@ -32,7 +32,7 @@
     <div><!--画像投稿-->
     <%= question.file_field :images, name: 'question[images][]', multiple: true, accept: "image/*" %>
     </div>
-
+    <div>画像は複数枚投稿できます</div>
     <%= question.submit "質問する" %>
     <% end %>
   </div>
