@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-3 text-center">
+    <div class="col-2 text-center">
       <h4><strong>User info</strong></h4>
       <% if @user.image.attached? %>
         <div class="question-user-icon"><%= image_tag @user.image, size: "200x200" %></div>
@@ -15,13 +15,26 @@
           <i class="fas fa-user-cog"></i><% end %>
         </div>
       <% end %>
+    </div>
 
+    <div class="col-9">
+      <div class="wrap">
+        <ul id="tab-menu" class="row offset-3">
+          <li><a href="#tab1" class="active col-5">投稿した質問</a></li>
+          <li><a href="#tab2" class="col-5">気になる!質問</a></li>
+        </ul>
+        <!--タブの中身-->
+        <div id="tab-contents">
+          <div id="tab1" class="tab">
+            <div class="mypage-question"><%= render "public/questions/question"%></div>
+          </div>
+
+          <div id="tab2" class="tab">
+            <div class="mypage-question"><%= render "public/questions/myfavorite_index"%></div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-8">
-      <%= render "public/questions/question"%>
-    </div>
-    <div class="col-8">
-      <%= render "public/questions/myfavorite_index"%>
-    </div>
+
   </div>
 </div>

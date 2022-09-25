@@ -44,3 +44,52 @@
 .user-intro{
   border-top: 1px solid black;
 }
+
+
+.wrap {
+  width: 90%;
+  margin: 0 auto;
+  border: 1px solid #000;
+}
+
+#tab-menu {
+  display: flex;
+  width: 100%;
+}
+
+#tab-menu li {
+
+  width: 100%;
+}
+
+#tab-menu li a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 10px 10px 0px 10px;
+  text-align: center;
+  background: #000;
+}
+
+#tab-menu .active {
+  background: #fff;
+  color: #000;
+}
+
+#tab-contents {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0px;
+}
+
+#tab-contents .tab {
+  width: 100%;
+  padding: 0px 10px 10px 10px;
+  background: #fff;
+}
+
+#tab-contents .mypage-question {
+  color: #000;
+  line-height: 2.5;
+  border-top: 1px solid black;
+}
