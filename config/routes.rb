@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     end
     resources :questions,only:[:index, :show, :new, :create, :destroy]do
       resources :answers,only:[:create]
+      resource :favorites, only: [:create, :destroy]
     end
     resources :homes,only:[:index, :show]
     resources :subjects,only:[:index, :new, :create, :edit, :update]

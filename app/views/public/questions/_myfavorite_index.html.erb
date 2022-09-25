@@ -1,0 +1,79 @@
+<div class="container question">
+  <% @favorite.each do |question| %>
+  <div class="row question-top">
+    <div class="question-title"><strong><%= question.title %></strong></div>
+    <div class="question-time"><%= l question.created_at, format: :long %></div>
+    <% if current_user.role == 2 %>
+      <div><%= link_to "削除", public_question_path(question), method: :delete %></div>
+    <% end %>
+  </div>
+  <div class="row question-user">
+
+    <!--質問者アイコン -->
+    <% if User.find_by(id:question.user_id).image.attached? %>
+      <div class="question-user-icon"><%= image_tag User.find_by(id:question.user_id).image, size: "50x50" %></div>
+    <% else %>
+      <%= image_tag 'no_image', size: "50x50" %>
+    <% end %>
+
+    <div class="question-user-name pl-5"><%= link_to User.find_by(id:question.user_id).name, public_user_path(question.user_id) %></div>
+    <div class="question-subject pl-5">:<%= question.subject_name %></div>
+    <div class="question-subject pl-5">・<%= question.child_subject_name %></div>
+  </div>
+
+  <details><summary>内容を見る</summary>
+    <div style="height: 300px;overflow-wrap: break-word;overflow-y: scroll;text-align:left" >
+      <div class="question-body"><%= question.body %></br>
+
+        <div><!--画像表示部分 -->
+          <% if question.images.attached? %>
+            <div class="row">クリックで拡大
+              <% question.images.each do |image| %>
+                <%= link_to image, "data-lightbox": image do %>
+                  <div class="question-user-icon"><%= image_tag image,size: "50x50", class: "img" %></div>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <% @answer.where(question_id:question.id).each do |answer| %>
+        <div class="question-answer"><!--解答-->
+          <div class="row">
+
+            <!--回答者アイコン-->
+            <% if User.find_by(id:answer.user_id).image.attached? %>
+              <div class="question-user-icon"><%= image_tag User.find_by(id:answer.user_id).image, size: "50x50" %></div>
+            <% else %>
+              <%= image_tag 'no_image', size: "50x50" %>
+            <% end %>
+
+            <div class="answer-user-name pl-3"><%= link_to User.find_by(id:answer.user_id).name, public_user_path(answer.user_id) %></div>
+            <div class="answer-time pl-3"><%= l answer.created_at, format: :long %></div>
+          </div>
+
+          <div>
+            <div class="answer-body"><%= answer.answer %>
+              <div><!--画像表示部分 -->
+                <% if answer.images.attached? %>
+                  <div class="row">
+                    <% answer.images.each do |image| %>
+                      <%= link_to image, "data-lightbox": image do %>
+                        <div class="question-user-icon"><%= image_tag image,size: "50x50", class: "img" %></div>
+                      <% end %>
+                    <% end %>
+                    <div>クリックで拡大</div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      <% end %>
+    </div>
+    <div><%= link_to "詳細を見る",public_question_path(question) %></div>
+  </details>
+  <% end %>
+</div>

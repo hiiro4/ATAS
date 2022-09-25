@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :question, dependent: :destroy
   has_many :answer, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   validates :introduction, presence: true, length: { maximum: 50 }
   has_one_attached :image
