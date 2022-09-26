@@ -1,24 +1,32 @@
-# README
+# ATAS
+### サイトテーマ
+学生向けの勉強を教え合うサイト。
+自身の取り組んでいる問題の解決策を質問し、他者の質問に答える。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
 
-* Ruby version
+### テーマを選んだ理由
+以前、このようなアプリを使用した経験があり、その便利さを経験しました。
+しかし、現在ではそのサイトは閉鎖されているため、自身で作ろうと考えました。
 
-* System dependencies
+### ターゲットユーザ
+- 勉強の合間にどうしてもスマートフォンを触ってしまう学生
+- 得意分野を他者に教えることで自身の力を伸ばしたい学生
+- 教師や友人に勉強の質問をしにくいと感じている学生
 
-* Configuration
+### 主な利用シーン
+- 勉強の合間に息抜きをしたい時
+- 自分で考えても問題を解けない時
 
-* Database creation
+## 開発環境
 
-* Database initialization
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JS ライブラリ：jQuery
+- IDE：Cloud9
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+Font Awesome
+- Font Awesome
+- https://fontawesome.com/
