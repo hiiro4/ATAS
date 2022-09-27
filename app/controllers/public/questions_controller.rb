@@ -10,7 +10,11 @@ class Public::QuestionsController < ApplicationController
   end
 
   def new
-    @question = Question.new
+    if current_user.role != 1
+      redirect_to public_homes_path
+    else
+      @question = Question.new
+    end
   end
 
   def create

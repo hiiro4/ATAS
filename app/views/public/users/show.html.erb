@@ -27,10 +27,12 @@
         <div id="tab-contents">
           <div id="tab1" class="tab">
             <div class="mypage-question"><%= render "public/questions/question"%></div>
+            <div><%= paginate @question, param_name: 'question' %></div>
           </div>
 
           <div id="tab2" class="tab">
             <div class="mypage-question"><%= render "public/questions/myfavorite_index"%></div>
+            <div><%= paginate @favorite, param_name: 'favorite' %></div>
           </div>
         </div>
       </div>

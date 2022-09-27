@@ -2,25 +2,26 @@
   <div>
   <%= render "public/questions/detail_question" %>
   </div>
-
-  <%= form_with model:@answering,url:public_question_answers_path(@question), method: :post do |answering| %><!--解答入力-->
-    <div class="question-answering">
-      <div class="row">
-        <% if current_user.image.attached? %>
-        <div class="answering-user-icon"><%= image_tag current_user.image, size: "50x50" %></div>
-        <% else %>
-          <div class="answering-user-icon"><%= image_tag 'no_image', size: "50x50" %></div>
-        <% end %>
-        <div class="answering-user-name"><%= current_user.name %></div>
-      </div>
-      <div>
-        <%= answering.text_area :answer, placeholder: "返答内容を入力", class: "answering-body" %>
-        <div><!--画像投稿-->
-          <%= answering.file_field :images, name: 'answer[images][]', multiple: true, accept: "image/*" %>画像は複数枚投稿できます
+  <% if current_user.role == 1 %>
+    <%= form_with model:@answering,url:public_question_answers_path(@question), method: :post do |answering| %><!--解答入力-->
+      <div class="question-answering">
+        <div class="row">
+          <% if current_user.image.attached? %>
+          <div class="answering-user-icon"><%= image_tag current_user.image, size: "50x50" %></div>
+          <% else %>
+            <div class="answering-user-icon"><%= image_tag 'no_image', size: "50x50" %></div>
+          <% end %>
+          <div class="answering-user-name"><%= current_user.name %></div>
         </div>
-        <%= answering.submit "答える" %>
+        <div>
+          <%= answering.text_area :answer, placeholder: "返答内容を入力", class: "answering-body" %>
+          <div><!--画像投稿-->
+            <%= answering.file_field :images, name: 'answer[images][]', multiple: true, accept: "image/*" %>画像は複数枚投稿できます
+          </div>
+          <%= answering.submit "答える" %>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 
 </div>
