@@ -18,6 +18,10 @@
 - 勉強の合間に息抜きをしたい時
 - 自分で考えても問題を解けない時
 
+## 設計書(ER図)
+https://user-images.githubusercontent.com/104817230/192482621-4fdbdf89-d83e-4f9d-a829-2f046f750c3b.png
+
+
 ## 開発環境
 
 - OS：Linux(CentOS)
@@ -30,3 +34,5 @@
 Font Awesome
 - Font Awesome
 - https://fontawesome.com/
+
+
