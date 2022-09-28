@@ -1,8 +1,8 @@
 <div class="container question">
   <% @question.each do |question| %>
-  <div class="row question-top">
+  <div class="row question-top pt-3">
     <div class="question-title"><strong><%= question.title %></strong></div>
-    <div class="question-time"><%= l question.created_at, format: :long %></div>
+    <div class="question-time"><%= l question.created_at, format: :short %></div>
     <% if current_user.role == 2 %>
       <div><%= link_to "削除", public_question_path(question), method: :delete %></div>
     <% end %>
@@ -16,9 +16,9 @@
       <%= image_tag 'no_image', size: "50x50" %>
     <% end %>
 
-    <div class="question-user-name pl-5"><%= link_to User.find_by(id:question.user_id).name, public_user_path(question.user_id) %></div>
-    <div class="question-subject pl-5">:<%= question.subject_name %></div>
-    <div class="question-subject pl-5">・<%= question.child_subject_name %></div>
+    <div class="question-user-name pl-md-1 col-md-5 col-sm-10"><%= link_to User.find_by(id:question.user_id).name, public_user_path(question.user_id) %></div>
+    <div class="question-subject pl-md-3 pl-sm-2">:<%= question.subject_name %></div>
+    <div class="question-subject pl-md-1">・<%= question.child_subject_name %></div>
   </div>
 
   <details><summary>内容を見る</summary>
@@ -50,7 +50,7 @@
             <% end %>
 
             <div class="answer-user-name pl-3"><%= link_to User.find_by(id:answer.user_id).name, public_user_path(answer.user_id) %></div>
-            <div class="answer-time pl-3"><%= l answer.created_at, format: :long %></div>
+            <div class="answer-time pl-3"><%= l answer.created_at, format: :short %></div>
           </div>
 
           <div>

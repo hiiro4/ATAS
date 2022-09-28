@@ -1,6 +1,6 @@
-<div class="row question-top"><!--質問タイトル-->
-    <div class="question-title"><%= @question.title %></div>
-    <div class="question-time"><%= l @question.created_at, format: :long %></div>
+  <div class="row question-top"><!--質問タイトル-->
+    <div class="question-title col-md-8"><%= @question.title %></div>
+    <div class="question-time"><%= l @question.created_at, format: :short %></div>
     <% if current_user.role == 2 %>
     <div><%= link_to "削除", public_question_path(@question), method: :delete %></div>
     <% end %>
@@ -63,7 +63,7 @@
       <% end %>
 
       <div class="answer-user-name"><%= User.find_by(id:answer.user_id).name %></div>
-      <div class="answer-time"><%= l answer.created_at, format: :long %></div>
+      <div class="answer-time"><%= l answer.created_at, format: :short %></div>
     </div>
     <div  style="height: 80%;overflow-wrap: break-word;overflow-y: scroll;text-align:left">
       <div class="answer-body"><%= answer.answer %>

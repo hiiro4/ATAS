@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-2 text-center">
+    <div class="col-md-2 text-center">
       <h4><strong>User info</strong></h4>
       <% if @user.image.attached? %>
         <div class="question-user-icon"><%= image_tag @user.image, size: "200x200" %></div>
@@ -11,13 +11,13 @@
       <div class="user-intro p-3">紹介:<%= @user.introduction %></div>
 
       <% if @user == current_user %>
-        <div class="row"><%= link_to edit_user_registration_path(current_user), class: "btn-outline-secondary btn-block btn" do %>
+        <div class="row p-2"><%= link_to edit_user_registration_path(current_user), class: "btn-outline-secondary btn-block btn" do %>
           <i class="fas fa-user-cog"></i><% end %>
         </div>
       <% end %>
     </div>
 
-    <div class="col-9">
+    <div class="col-md-9">
       <div class="wrap">
         <ul id="tab-menu" class="row offset-3">
           <li><a href="#tab1" class="active col-5">投稿した質問</a></li>

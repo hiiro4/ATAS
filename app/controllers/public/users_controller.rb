@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :redirect_top, except: :top
+  before_action :redirect_top, only: ["show"], if: proc { current_user.role != 1 }
 
   def top
   end
@@ -15,7 +15,7 @@ class Public::UsersController < ApplicationController
   private
 
 def redirect_top
-  redirect_to public_homes_path if current_user.role = 2
+  redirect_to public_homes_path
 end
 
 
